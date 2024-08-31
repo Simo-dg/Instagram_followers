@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Files</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #37405c;
+        }
+        .upload-container {
+            text-align: center;
+            border: 2px dashed #ccc;
+            padding: 50px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .upload-container h1 {
+            margin-bottom: 20px;
+        }
+        .upload-container input[type="file"] {
+            display: none;
+        }
+        .upload-container label {
+            display: block;
+            padding: 20px;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: #f9f9f9;
+        }
+        .upload-container label:hover {
+            background-color: #f1f1f1;
+        }
+        .upload-container .uploaded-message {
+            display: none;
+            margin-top: 20px;
+            color: green;
+            font-weight: bold;
+        }
+        .upload-container input[type="submit"] {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .upload-container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .upload-container .explanation {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="upload-container" id="uploadContainer">
+        <h1>Upload Followers and Following Files</h1>
+        <form action="/result" method="post" enctype="multipart/form-data">
+            <label for="folder">Browse folder here</label>
+            <div class="explanation">Please upload the entire folder.</div>
+            <input type="file" name="folder" id="folder" webkitdirectory directory multiple required onchange="showUploadedMessage()">
+            <br><br>
+            <input type="submit" value="Upload">
+        </form>
+        <div class="uploaded-message" id="uploadedMessage">
+            <span>&#10003; Folder uploaded successfully!</span>
+        </div>
+    </div>
+    <script>
+        function showUploadedMessage() {
+            document.getElementById('uploadedMessage').style.display = 'block';
+        }
+
+        const uploadContainer = document.getElementById('uploadContainer');
+        const folderInput = document.getElementById('folder');
+
+        uploadContainer.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            uploadContainer.style.backgroundColor = '#f1f1f1';
+        });
+
+        uploadContainer.addEventListener('dragleave', () => {
+            uploadContainer.style.backgroundColor = '#fff';
+        });
+
+        uploadContainer.addEventListener('drop', (event) => {
+            event.preventDefault();
+            uploadContainer.style.backgroundColor = '#fff';
+            const files = event.dataTransfer.files;
+            const dataTransfer = new DataTransfer();
+            for (let i = 0; i < files.length; i++) {
+                dataTransfer.items.add(files[i]);
+            }
+            folderInput.files = dataTransfer.files;
+            showUploadedMessage();
+        });
+    </script>
+</body>
+</html>
