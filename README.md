@@ -30,12 +30,11 @@ This project is a web application that compares two lists of Instagram accounts:
 Your project should be organized as follows:
 
 ```
-/instagram-follower-analysis
+/instagram_followers
 ├── app.py
 ├── /templates
 │   ├── upload.html
 │   └── result.html
-└── /uploads
 ```
 
 - `app.py`: The main Flask application script.
