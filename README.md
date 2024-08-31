@@ -27,7 +27,19 @@ This project is a web application that compares two lists of Instagram accounts:
 
 
 ## Folder download from Instagram
+- Open Instagram from your browser
+- Go on your profile / Other / Yor activity
+- Download your informations
+- Download of transfer informations
+- Some of them
+- Scroll down and select "follower"
+- Click on "next"
+- Download on your device
+- Select "always" as time interval
+- Click on "create file"
 
+  After some minutes you will receive a mail notification that your file is ready and you can download it
+  
 ## Project Structure
 
 Your project should be organized as follows:
